@@ -1,0 +1,92 @@
+<ion-content class="login-view">
+  <div class="login-page">
+    <div class="login-wrapper">
+      <div class="login-inner">
+        <ion-grid>
+          <ion-row>
+            <ion-col size-md="12" size-xs="12" size-sm="12" size-lg="6">
+              <div class="login-form">
+                <div class="form-inner">
+                  <div class="form-header">
+                    <div class="form-header-top">
+                      <p>Welcome To</p>
+                    </div>
+                    <div class="form-header-middle">
+                      <img src="assets/images/logo.png">
+                    </div>
+                    <div class="form-header-bottom">
+                      <p>
+                        Login in to get in the moment updates on the things that interest you.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="form-body">
+                    <form #loginForm="ngForm" (ngSubmit)="onSubmitForm(loginForm)" (keyup.enter)="onSubmitForm(loginForm)">
+                      <mat-form-field appearance="outline">
+                        <mat-icon matPrefix>person</mat-icon>
+                        <mat-label>Username</mat-label>
+                        <input matInput placeholder="Username" ngModel
+                        type="text"
+                        name="userName"
+                        required
+                        clearInput>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-icon matPrefix>lock</mat-icon>
+                        <mat-label>Password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" ngModel
+                        name="password"
+                        required
+                        minlenth="2"
+                        #passwordCtrl="ngModel"
+                        clearInput>
+                        <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </span>
+                      </mat-form-field>
+                      <button type="submit" [disabled]="!loginForm.valid" class="signInBtn" mat-raised-button>Sign In</button>
+                    </form>
+                  </div>
+                  <p class="forgotpassword">
+                    <a [routerLink]="['/forgotpassword']">Forgot Password</a></p>
+                  <div class="form-footer">
+                    <!-- <p class="notice">
+                      Don't have an account? 
+                      <span>Sign Up Now</span>
+                    </p> -->
+                    <p class="devider"><span>OR</span></p>
+                    <div class="social-icons">
+                      <p>Continue with social media</p>
+                      <div class="social-buttons">
+                        <button mat-mini-fab class="facebook">
+                          <ion-icon name="logo-facebook"></ion-icon>
+                        </button>
+                        <button mat-mini-fab class="twitter">
+                          <ion-icon name="logo-twitter"></ion-icon>
+                        </button>
+                        <button mat-mini-fab class="google">
+                          <ion-icon name="logo-google"></ion-icon>
+                        </button>
+                        <button mat-mini-fab class="linkedin">
+                          <ion-icon name="logo-linkedin"></ion-icon>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col size-md="12" size-xs="12" size-sm="12" size-lg="6">
+              <div class="login-bg">
+                <div class="powered-by">
+                  <img src="assets/images/company-logo.png">
+                  <p>A complete product of Technosoft Software Solution</p>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+</ion-content>

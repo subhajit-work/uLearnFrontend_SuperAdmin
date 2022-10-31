@@ -1,0 +1,140 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="form-layout">
+        <div class="card-outer">
+          <div class="card card-box">
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                    Payment Add
+                  </div>
+                  <div class="card-header-action">
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="form-wrapper">
+                  <ion-grid>
+                    <ion-row>
+
+                      <!-- Institute -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                         <mat-form-field appearance="outline">
+                            <mat-label>Institute</mat-label>
+                            <mat-select [(ngModel)]="model.selectedmailType" name="institute">
+                              <mat-option *ngFor="let institute of institutes" [value]="institute.id">
+                                {{institute.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Package -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Packages</mat-label>
+                            <mat-select [(ngModel)]="model.selectedpackage" name="packages">
+                              <mat-option *ngFor="let package of packages" [value]="package.id">
+                                {{package.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Payment Method-->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Payment Method</mat-label>
+                            <mat-select [(ngModel)]="model.selectedpayment" name="paymentMethod">
+                              <mat-option *ngFor="let payment of paymentMethod" [value]="payment.id">
+                                {{payment.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      
+                      <!-- Amount -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Amount</mat-label>
+                            <input matInput placeholder="Amount" type="number" [(ngModel)]="model.amount">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Payment Details -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Payment Details</mat-label>
+                            <input matInput placeholder="Amount" type="text" [(ngModel)]="model.paymentdetails">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Payment Status -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                         <mat-form-field appearance="outline">
+                            <mat-label>Payment Status</mat-label>
+                            <mat-select [(ngModel)]="model.selectedpaymentstatus" name="paymentstatus">
+                              <mat-option *ngFor="let paymentstatus of paymentStatus" [value]="paymentstatus.id">
+                                {{paymentstatus.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Payment date -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Payment date</mat-label>
+                            <input matInput [matDatepicker]="picker" [(ngModel)]="model.paymentdate">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Next due date -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Next due date</mat-label>
+                            <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="model.nextduedate">
+                            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                            <mat-datepicker #endDatePicker></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+              <div class="card-footer">
+                  <div>
+                      <button class="border-btn danger btn-md" style="margin-right: 10px;" mat-stroked-button>Cancel</button>
+                      <button class="fill-btn btn-md" (click)="presentToast()" mat-stroked-button [routerLink]="['/', 'payment-list']">Save</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

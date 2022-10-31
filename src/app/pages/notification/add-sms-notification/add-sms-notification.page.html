@@ -1,0 +1,177 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="form-layout">
+        <div class="card-outer">
+          <div class="card card-box">
+            <form #addSmsnoticForm="ngForm" (ngSubmit)="onSubmitForm(addSmsnoticForm)">
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                    SMS Template {{parms_action_name}}
+                  </div>
+                  <div class="card-header-action">
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="form-wrapper">
+                  <ion-grid>
+                    <ion-row>
+                       <!-- Template For -->
+                       <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item ngsel">
+                         <!--  <ion-badge class="pillBtn" color="primary" (click)="AddSmsTemplate('AddSmsTemplate_modal', get_user_dtls, '');">
+                            <ion-icon name="add-outline"></ion-icon>
+                            Add
+                          </ion-badge> -->
+                         <!--  <mat-form-field appearance="outline">
+                            <mat-label>Template For </mat-label>
+                            <mat-select [(value)]="selectedTemplate" [(ngModel)]="model.stAction" name="stAction" required>
+                              <mat-option (click)="selectTemplates(template.stTags)" [value]="template.stName" *ngFor="let template of templates">{{ template.stName }}</mat-option>
+                            </mat-select>
+                          </mat-form-field> -->
+                           
+                          <ng-select [ngClass]="{'readOnly': model?.stType == 'DEFAULT'}" [items]="templates" 
+                            bindLabel="stAction" 
+                            name="stAction"
+                            placeholder="Select Template For"
+                            bindValue="stAction"
+                            required 
+                            [(ngModel)]="model.stAction"
+                            (change)="getTags(model.stAction)">
+                          </ng-select>
+                          <label>Template For</label>
+                        </div>
+                      </ion-col>
+                      <!-- Template name -->
+                      <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline" [ngClass]="{'readOnly': model?.stType == 'DEFAULT'}">
+                            <mat-label>Template Name </mat-label>
+                            <input matInput placeholder="Template Name" type="text" name="stName" [(ngModel)]="model.stName" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Chose Header Id -->
+                      <!-- <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-badge class="pillBtn" color="primary" (click)="choseHeader('choseHeader_modal', get_user_dtls, '');">
+                            <ion-icon name="add-outline"></ion-icon>
+                            Add
+                          </ion-badge>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Chose Header Id </mat-label>
+                            <mat-select [(value)]="selectedHeader" [(ngModel)]="model.stTempId" name="stTempId">
+                              <mat-option [value]="headerId.name" *ngFor="let headerId of headerIds">{{ headerId.name }}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col> -->
+                      <!-- Set Default -->
+                      <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item ngsel">
+                         <!--  <ion-badge class="pillBtn" color="primary"  (click)="addSmsDefault('add_Sms_default_modal', get_user_dtls, '');">
+                            <ion-icon name="add-outline"></ion-icon>
+                            Add
+                          </ion-badge> -->
+                          
+                          <ng-select [items]="setDefaults" 
+                            bindLabel="name" 
+                            name="isPrimary"
+                            placeholder="Select Set Default"
+                            bindValue="id" 
+                            required
+                            [(ngModel)]="model.isPrimary"
+                            (change)="ngsel(model.isPrimary)">
+                          </ng-select>
+                          <label>Set Default</label>
+                        </div>
+                      </ion-col>
+                      <!-- Template name -->
+                      <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline" [ngClass]="{'readOnly': model?.stType == 'DEFAULT'}">
+                            <mat-label>Template Id </mat-label>
+                            <input matInput placeholder="Header" type="text" name="stTempId" [(ngModel)]="model.stTempId">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Useable tag -->
+                      <!-- <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12" *ngIf="selectdTag">
+                        <div class="card-outer">
+                          <div class="card card-box">
+                            <div class="card-header">
+                              <div class="card-header-tittle">
+                                Useable tags for template body:
+                              </div>
+                            </div>
+                            <div class="card-body">
+                              {{selectdTag}}
+                            </div>
+                          </div>
+                        </div>
+                      </ion-col> -->
+                      <!-- Template Description -->
+                      <!-- <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                        <div class="form-item">
+                          <ion-label>Template Body </ion-label>
+                          <div class="text-editor">
+                            <tinymce  name="stBody" [(ngModel)]="model.stBody" required></tinymce>
+                          </div>
+                        </div>
+                      </ion-col> -->
+                    </ion-row>
+                    <ion-row>
+                      <!-- Message Text -->
+                      <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                        <div class="form-item ngsel">
+                           <ng-select [ngClass]="{'readOnly': model?.stType == 'DEFAULT'}" [items]="selectFieldVariable" 
+                                    bindLabel="name" 
+                                    name="msgVariable"
+                                    placeholder="Select field"
+                                    bindValue="value" 
+                                    [(ngModel)]="model.msgVariable"
+                                    (change)="selectFieldForMsg(model.msgVariable)">
+                           </ng-select>
+                           <label>Select field</label>
+                         </div>
+                        <div class="form-item">
+                          <mat-form-field appearance="outline" [ngClass]="{'readOnly': model?.stType == 'DEFAULT'}">
+                            <mat-label>Message Text</mat-label>
+                            <textarea #msgText (click)="getCursorPosition(msgText, model.stBody)" (keyup)="getCursorPosition(msgText, model.stBody)" matInput name="stBody" [(ngModel)]="model.stBody" required></textarea>
+                          </mat-form-field>
+                        </div>
+                        <p *ngIf="model.stBody" class="informationTxt"><span>{{model?.stBody?.length}}</span> Characters Used.  |  Count <span>{{model?.stBody?.length / 120  | number: '1.0-0'}}</span></p> 
+                      </ion-col>
+                      <!-- Message view -->
+                      <ion-col *ngIf="model.stBody" size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                        <div class="msgViewBox">
+                          <p class="msgHeading">Message view</p>
+                          <p class="msgBody">{{model?.stBody}}</p>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+              <div class="card-footer">
+                  <div>
+                      <button class="border-btn danger btn-md" type="reset" [routerLink]="['/', 'sms-notification-list']" style="margin-right: 10px;" mat-stroked-button>Cancel</button>
+                      <button class="fill-btn btn-md" mat-stroked-button type="submit" [disabled]="!addSmsnoticForm.valid || formLoading">
+                      <ion-spinner *ngIf="formLoading" name="crescent"></ion-spinner>
+                      Save
+                      </button>
+                  </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

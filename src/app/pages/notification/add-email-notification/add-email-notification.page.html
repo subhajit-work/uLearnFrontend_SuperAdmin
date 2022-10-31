@@ -1,0 +1,126 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="form-layout">
+        <div class="card-outer">
+          <div class="card card-box" *ngIf="!editLoading">
+            <form #addEmailnoticForm="ngForm" (ngSubmit)="onSubmitForm(addEmailnoticForm)" >
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                    Email Template {{parms_action_name}}
+                  </div>
+                  <div class="card-header-action">
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="form-wrapper">
+                  <ion-grid>
+                    <ion-row>
+                      <!-- Template For -->
+                      <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item ngsel">
+                          <!--<ion-badge class="pillBtn" color="primary" (click)="AddTemplate('AddTemplate_modal', get_user_dtls, '');">
+                            <ion-icon name="add-outline"></ion-icon>
+                            Add
+                          </ion-badge>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Template For </mat-label>
+                            <mat-select [(value)]="selectedTemplate" [(ngModel)]="model.etAction" name="etAction" required>
+                              <mat-option (click)="selectTemplates(template.etTags)" [value]="template.etAction" *ngFor="let template of Templates">{{ template.etAction }}</mat-option>
+                            </mat-select>
+                          </mat-form-field> -->
+                          
+                          <ng-select [ngClass]="{'readOnly': model?.etType == 'DEFAULT'}" [items]="Templates" 
+                                   bindLabel="etAction" 
+                                   name="etAction"
+                                   bindValue="etAction" 
+                                   [(ngModel)]="model.etAction"
+                                   (change)="getTags(model.etAction)">
+                          </ng-select>
+                          <label>Template For</label>
+                        </div>
+                      </ion-col>
+                      <!-- Template name -->
+                      <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline" [ngClass]="{'readOnly': model?.etType == 'DEFAULT'}">
+                            <mat-label>Template Name </mat-label>
+                            <input matInput placeholder="Template Name" name="etName" type="text" [(ngModel)]="model.etName" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                       <!-- Subject -->
+                       <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline" [ngClass]="{'readOnly': model?.etType == 'DEFAULT'}">
+                            <mat-label>Subject </mat-label>
+                            <input matInput placeholder="Subject" name="etSubject" type="text" [(ngModel)]="model.etSubject" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Set Default -->
+                      <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item ngsel">
+                          
+                          <ng-select [items]="setDefaults" 
+                                   bindLabel="name" 
+                                   name="isPrimary"
+                                   placeholder="Select Set Default"
+                                   bindValue="id" 
+                                   [(ngModel)]="model.isPrimary"
+                                   (change)="ngsel(model.isPrimary)"
+                                   required>
+                          </ng-select>
+                          <label>Set Default</label>
+                        </div>
+                      </ion-col>
+                      <!-- Message Text -->
+                      <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item ngsel">
+                           <ng-select [items]="selectFieldVariable" 
+                                    bindLabel="name" 
+                                    name="selectVariable"
+                                    placeholder="Select field"
+                                    bindValue="value" 
+                                    [(ngModel)]="model.selectVariable"
+                                    (change)="selectFieldForTags(model.selectVariable)">
+                           </ng-select>
+                           <label>Select field</label>
+                         </div>
+                      </ion-col>
+                      <!-- Template Description -->
+                      <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                        <div class="form-item">
+                          <ion-label>Template Body </ion-label>
+                          <div class="text-editor">
+                            <!-- <tinymce [ngClass]="{'readOnly': model?.etType == 'DEFAULT'}" #msgText (click)="getCursorPosition(msgText, model.etBody)" (keyup)="getCursorPosition(msgText, model.etBody)" name="etBody" type="text" [(ngModel)]="model.etBody" required></tinymce> -->
+                            <editor name="etBody" [(ngModel)]="model.etBody" required [init]="tinyMceConfig"></editor>
+                          </div>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+              <div class="card-footer">
+                  <div>
+                      <button class="border-btn danger btn-md" type="reset" [routerLink]="['/', 'email-notification-list']" style="margin-right: 10px;" mat-stroked-button>Cancel</button>
+                      <button class="fill-btn btn-md" mat-stroked-button type="submit" [disabled]="!addEmailnoticForm.valid || formLoading">
+                        <ion-spinner *ngIf="formLoading" name="crescent"></ion-spinner>
+                        Save
+                      </button>
+                  </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

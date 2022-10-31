@@ -1,0 +1,206 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="box-table-header">
+        <div class="search-module">
+          <div class="form-layout">
+            <div class="form-wrapper">
+              <div class="form-item">
+                <ion-label>Institutes</ion-label>
+                <ng-select #select 
+                  [items]="institute"
+                  placeholder="Please Select Institutes"
+                  [searchable]="true" 
+                  [(ngModel)]="selectedinstitute" 
+                  bindLabel="name" 
+                  bindValue="name">
+                </ng-select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button-module">
+          <button class="border-btn success" [routerLink]="['/', 'add-links']" mat-stroked-button>
+            <mat-icon>add_circle_outline</mat-icon>
+            Add Link
+          </button>
+        </div>
+      </div>
+
+      <div class="card-outer">
+        <div class="card card-box">
+          <div class="card-header">
+            <div class="card-header-tittle">
+              Social Link Lists
+            </div>
+            <div class="card-header-action">
+              <mat-icon>connect_without_contact</mat-icon>
+            </div>
+          </div>
+          <div class="card-body">
+            <ion-grid>
+              <ion-row>
+                <ion-col size-xs="12" size-sm="12" size-md="4"  size-lg="4">
+                  <div class="view-data">
+                    <div class="card-outer">
+                      <div class="card card-box">
+                        <div class="card-body">
+                          <ion-item>
+                            <ion-avatar slot="start">
+                              <img src="assets/icon/facebook.png">
+                            </ion-avatar>
+                            <ion-label>
+                              <h3>Facebook</h3>
+                              <p>https://www.facebook.com/</p>
+                              <div class="action">
+                                <ion-button matTooltip="Refresh" matTooltipPosition="above" size="small" color="secondary" (click)="clickActionBtn('', 'refresh')">
+                                    <mat-icon>edit</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Enable" matTooltipPosition="above" size="small" color="success" (click)="clickActionBtn(statusChange, 'status')">
+                                    <mat-icon>visibility</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Delete" matTooltipPosition="above" size="small" color="danger" (click)="clickActionBtn('', 'delete')">
+                                    <mat-icon>delete</mat-icon>
+                                </ion-button>
+                              </div>
+                            </ion-label>
+                          </ion-item>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ion-col>
+                <ion-col size-xs="12" size-sm="12" size-md="4"  size-lg="4">
+                  <div class="view-data">
+                    <div class="card-outer">
+                      <div class="card card-box">
+                        <div class="card-body">
+                          <ion-item>
+                            <ion-avatar slot="start">
+                              <img src="assets/icon/instagram.png">
+                            </ion-avatar>
+                            <ion-label>
+                              <h3>Instagram</h3>
+                              <p>https://www.instagram.com/</p>
+                              <div class="action">
+                                <ion-button matTooltip="Refresh" matTooltipPosition="above" size="small" color="secondary" (click)="clickActionBtn('', 'refresh')">
+                                    <mat-icon>edit</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Enable" matTooltipPosition="above" size="small" color="success" (click)="clickActionBtn(statusChange, 'status')">
+                                    <mat-icon>visibility</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Delete" matTooltipPosition="above" size="small" color="danger" (click)="clickActionBtn('', 'delete')">
+                                    <mat-icon>delete</mat-icon>
+                                </ion-button>
+                              </div>
+                            </ion-label>
+                          </ion-item>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ion-col>
+                <ion-col size-xs="12" size-sm="12" size-md="4"  size-lg="4">
+                  <div class="view-data">
+                    <div class="card-outer">
+                      <div class="card card-box">
+                        <div class="card-body">
+                          <ion-item>
+                            <ion-avatar slot="start">
+                              <img src="assets/icon/linkedin.png">
+                            </ion-avatar>
+                            <ion-label>
+                              <h3>Linkedin</h3>
+                              <p>https://www.linkedin.com/</p>
+                              <div class="action">
+                                <ion-button matTooltip="Refresh" matTooltipPosition="above" size="small" color="secondary" (click)="clickActionBtn('', 'refresh')">
+                                    <mat-icon>edit</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Enable" matTooltipPosition="above" size="small" color="success" (click)="clickActionBtn(statusChange, 'status')">
+                                    <mat-icon>visibility</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Delete" matTooltipPosition="above" size="small" color="danger" (click)="clickActionBtn('', 'delete')">
+                                    <mat-icon>delete</mat-icon>
+                                </ion-button>
+                              </div>
+                            </ion-label>
+                          </ion-item>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ion-col>
+                <ion-col size-xs="12" size-sm="12" size-md="4"  size-lg="4">
+                  <div class="view-data">
+                    <div class="card-outer">
+                      <div class="card card-box">
+                        <div class="card-body">
+                          <ion-item>
+                            <ion-avatar slot="start">
+                              <img src="assets/icon/twitter.png">
+                            </ion-avatar>
+                            <ion-label>
+                              <h3>Twitter</h3>
+                              <p>https://www.twitter.com/</p>
+                              <div class="action">
+                                <ion-button matTooltip="Refresh" matTooltipPosition="above" size="small" color="secondary" (click)="clickActionBtn('', 'refresh')">
+                                    <mat-icon>edit</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Enable" matTooltipPosition="above" size="small" color="success" (click)="clickActionBtn(statusChange, 'status')">
+                                    <mat-icon>visibility</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Delete" matTooltipPosition="above" size="small" color="danger" (click)="clickActionBtn('', 'delete')">
+                                    <mat-icon>delete</mat-icon>
+                                </ion-button>
+                              </div>
+                            </ion-label>
+                          </ion-item>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ion-col>
+                <ion-col size-xs="12" size-sm="12" size-md="4"  size-lg="4">
+                  <div class="view-data">
+                    <div class="card-outer">
+                      <div class="card card-box">
+                        <div class="card-body">
+                          <ion-item>
+                            <ion-avatar slot="start">
+                              <img src="assets/icon/youtube.png">
+                            </ion-avatar>
+                            <ion-label>
+                              <h3>Youtube</h3>
+                              <p>https://www.youtube.com/</p>
+                              <div class="action">
+                                <ion-button matTooltip="Refresh" matTooltipPosition="above" size="small" color="secondary" (click)="clickActionBtn('', 'refresh')">
+                                    <mat-icon>edit</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Enable" matTooltipPosition="above" size="small" color="success" (click)="clickActionBtn(statusChange, 'status')">
+                                    <mat-icon>visibility</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Delete" matTooltipPosition="above" size="small" color="danger" (click)="clickActionBtn('', 'delete')">
+                                    <mat-icon>delete</mat-icon>
+                                </ion-button>
+                              </div>
+                            </ion-label>
+                          </ion-item>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

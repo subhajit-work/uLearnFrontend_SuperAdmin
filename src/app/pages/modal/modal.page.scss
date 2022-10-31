@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Livvic:wght@300&display=swap');
+ion-content
+{
+    --background-color: #fff !important;
+    --background: #fff;
+    border: 2px solid #2F8FC3;
+}
+.closeBtn
+{
+    font-size: 20px;
+    color: #fff;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.modal-header {
+    background-color: #2F8FC3;
+    .modal-inner {
+        display: flex;
+        ion-button {
+            margin-right: 20px;
+            width: 40px;
+            --padding-start: 6px;
+            --padding-end: 6px;
+            --border-radius: 50%;
+            height: 40px;
+            --background: transparent;
+
+        }
+        ion-title {
+            font-family: 'Livvic', sans-serif;
+            font-weight: 600;
+            color: #fff !important;
+            letter-spacing: .3px;
+        }
+    }
+}
+.mat-form-field-outline {
+    border-radius: 50px;
+}
+.modal-footer {
+    position: fixed;
+    bottom: 0;
+    .footer-inner {
+        display: flex;
+        justify-content: end;
+        padding: 10px 20px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        // border-top: 1px dotted #2F8FC3;
+        background: #fff;
+        border: 2px solid #2F8FC3;
+        border-top: 1px dotted #2F8FC3;
+        
+    }
+}
+.scroll-y::part(background)
+{
+    background: #fff !important;
+}
+

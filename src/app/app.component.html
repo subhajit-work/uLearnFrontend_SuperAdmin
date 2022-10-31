@@ -1,0 +1,320 @@
+<ion-app>
+  <ion-split-pane contentId="main-content" [ngClass]="{ 'toggle-menu': toggle == true}">
+    <ion-menu contentId="main-content" type="overlay" class="main-side-menu">
+      <ion-header>
+        <ion-toolbar >
+          <ion-title>
+            <div class="header_logo">
+              <img class="logo-1stpart" src="assets/images/favIcon.png" alt="logo">
+              <span class="site-name">
+                <img src="assets/images/logo_2nd.png" alt="logo">
+              </span>
+              <mat-icon (click)="toggleMenu(toggle)">double_arrow</mat-icon>
+            </div>
+          </ion-title>
+          
+        </ion-toolbar>
+        <mat-icon class="toggle-btn" (click)="toggleMenu(toggle)">menu_open</mat-icon>
+      </ion-header>
+      <ion-content class="menu-list-box">
+        <mat-accordion>
+          <!-- Multiple menu start -->
+          <mat-expansion-panel class="noSubMenu" #example routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/','dashboard']">
+            <mat-expansion-panel-header class="mat-header-bg" [class.active-parent] = "example.expanded">
+              <mat-panel-title>
+                <mat-icon>dashboard</mat-icon>
+                Dashboard 
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+          </mat-expansion-panel>
+          <!-- Multiple menu end -->
+
+          <mat-expansion-panel  #example routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-expansion-panel-header class="mat-header-bg" [class.active-parent] = "example.expanded">
+              <mat-panel-title>
+                <mat-icon>account_balance</mat-icon>
+                Institute
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-list>
+              <ion-menu-toggle auto-hide="false">
+                <ion-item class="sub-item" [routerLink]="['/','security-list']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    List Institute 
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','add-security', 'add', 'id']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Add Institute 
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+
+          </mat-expansion-panel>
+          <mat-expansion-panel  #example routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-expansion-panel-header class="mat-header-bg" [class.active-parent] = "example.expanded">
+              <mat-panel-title>
+                <mat-icon>loyalty</mat-icon>
+                Package
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-list>
+              <ion-menu-toggle auto-hide="false">
+                <ion-item class="sub-item" [routerLink]="['/','subscription-package-list']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Package List 
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','add-subscription-package', 'add', 'id']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Add Package
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+
+          </mat-expansion-panel>
+          <mat-expansion-panel  #example routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-expansion-panel-header class="mat-header-bg" [class.active-parent] = "example.expanded">
+              <mat-panel-title>
+                <mat-icon>local_police</mat-icon>
+                License
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-list>
+              <ion-menu-toggle auto-hide="false">
+                <ion-item class="sub-item" [routerLink]="['/','license-list']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Institute License List 
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','add-license', 'add', 'id']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Add Institute License
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+          </mat-expansion-panel>
+          <mat-expansion-panel  #example routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-expansion-panel-header class="mat-header-bg" [class.active-parent] = "example.expanded">
+              <mat-panel-title>
+                <mat-icon>tag</mat-icon>
+                HSN Number
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-list>
+              <ion-menu-toggle auto-hide="false">
+                <ion-item class="sub-item" [routerLink]="['/','hsn-list']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    HSN List 
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','add-hsn']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Add HSN
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+          </mat-expansion-panel>
+          <mat-expansion-panel  #example routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-expansion-panel-header class="mat-header-bg" [class.active-parent] = "example.expanded">
+              <mat-panel-title>
+                <mat-icon>notifications_active</mat-icon>
+                Notification
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-list>
+              <ion-menu-toggle auto-hide="false">
+                <ion-item class="sub-item" [routerLink]="['/','notification-list']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    New Notification 
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','approved-notification']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Approved Notification 
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','rejected-notification']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Rejected Notification 
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+
+          </mat-expansion-panel>
+          <mat-expansion-panel  #example routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-expansion-panel-header class="mat-header-bg" [class.active-parent] = "example.expanded">
+              <mat-panel-title>
+                <mat-icon>mark_as_unread</mat-icon>
+                Email Template
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-list>
+              <ion-menu-toggle auto-hide="false">
+                <ion-item class="sub-item" [routerLink]="['/','add-email-notification', 'add', 'id']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Add email template
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','email-notification-list']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Email template list
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','compose-mail']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Compose mail 
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','sent-mail']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Sent mail
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','received-mail']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Received mail
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+
+          </mat-expansion-panel>
+
+          <mat-expansion-panel  #example routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-expansion-panel-header class="mat-header-bg" [class.active-parent] = "example.expanded">
+              <mat-panel-title>
+                <mat-icon>sms</mat-icon>
+                SMS Template
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-list>
+              <ion-menu-toggle auto-hide="false">
+                <ion-item class="sub-item" [routerLink]="['/','add-sms-notification', 'add', 'id']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Add SMS template
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','sms-notification-list']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    SMS template list
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','compose-sms']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Compose SMS 
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','sent-sms']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Sent SMS
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+
+          </mat-expansion-panel>
+          <mat-expansion-panel  #example routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-expansion-panel-header class="mat-header-bg" [class.active-parent] = "example.expanded">
+              <mat-panel-title>
+                <mat-icon>payments</mat-icon>
+                Payment
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-list>
+              <ion-menu-toggle auto-hide="false">
+                <ion-item class="sub-item" [routerLink]="['/','payment-list']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Payment / History 
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','due-payment']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Due Payment
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','add-payment']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Add Payment
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+
+          </mat-expansion-panel>
+
+          <mat-expansion-panel  #example routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-expansion-panel-header class="mat-header-bg" [class.active-parent] = "example.expanded">
+              <mat-panel-title>
+                <mat-icon>insights</mat-icon>
+                Tracking
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-list>
+              <ion-menu-toggle auto-hide="false">
+                <ion-item class="sub-item" [routerLink]="['/','exam-tracking']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Exam Tracking
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','user-list']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    User Tracking
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','package-tracking']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Package Tracking
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+
+          </mat-expansion-panel>
+
+          <mat-expansion-panel  #example routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-expansion-panel-header class="mat-header-bg" [class.active-parent] = "example.expanded">
+              <mat-panel-title>
+                <mat-icon>settings</mat-icon>
+                Settings
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ion-list>
+              <ion-menu-toggle auto-hide="false">
+                <ion-item class="sub-item" [routerLink]="['/','manage-banners']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Manage Banners 
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','manage-gallery']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Manage Photo Gallery
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','manage-links']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Manage Links 
+                  </ion-label>
+                </ion-item>
+                <ion-item class="sub-item" [routerLink]="['/','manage-website']" routerLinkActive="router-link-active" routerDirection="root" [routerLinkActiveOptions]="{ exact: true }">
+                  <ion-label>
+                    Website Configuration
+                  </ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content">
+      <!-- <ng-http-loader></ng-http-loader> -->
+    </ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

@@ -1,0 +1,285 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="table-listing">
+        <div class="card-outer">
+          <div class="card card-box">
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                      Institutes List
+                  </div>
+                  <div class="card-header-action">
+                    
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="table-header">
+                  <div class="records-wrapper">
+                    <ion-item class="record">
+                      <span>Records: </span>
+                      <mat-form-field>
+                        <mat-select value="10">
+                          <mat-option value="10">10</mat-option>
+                          <mat-option value="25">25</mat-option>
+                          <mat-option value="50">50</mat-option>
+                          <mat-option value="100">100</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </ion-item>
+                  </div>
+                  <div class="search-wrapper">
+                    <ion-searchbar showCancelButton="focus" debounce="500" placeholder="Search item ...."></ion-searchbar>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="ion-text-start">
+                                    <div>
+                                        #
+                                    </div>
+                                </th>
+                                <th class="ion-text-start">
+                                  <div>
+                                      <ion-checkbox color="primary"></ion-checkbox>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                      Institute Name
+                                      <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Institute Owner Name
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Contact Person Name
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Contact Number
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Email Address
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Institute Website
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Address Line 1
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Address Line 2
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Country
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    State
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    City
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Pin Code
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div class="ion-justify-content-center">
+                                    Status
+                                    <mat-icon>north</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div class="ion-justify-content-center">
+                                    Actions
+                                  </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr  [hidden]="!isListLoading" class="loading-table-data">
+                            <td colspan="100">
+                              Data is loading...
+                            </td>
+                          </tr>
+                          <tr  [hidden]="isListLoading" *ngFor="let item of skeleton; let i = index">
+                            <td>1</td>
+                            <td>
+                              <ion-checkbox color="primary"></ion-checkbox>
+                            </td>
+                            <td>
+                              <ion-item class="name-box">
+                                <ion-avatar slot="start">
+                                  <img src="assets/images/avatar1.jpg">
+                                </ion-avatar>
+                                <ion-label>
+                                  <h2 class="userName">Lalit Tutorial</h2>
+                                </ion-label>
+                              </ion-item>
+                            </td>
+                            <td>
+                              Prashanth Patel
+                            </td>
+                            <td>
+                              Prashanth Patel
+                            </td>
+                            <td>
+                              +91 91258 96558
+                            </td>
+                            <td>
+                              subhajit@ulearn.in
+                            </td>
+                            <td>
+                              www.lalittutorial.com
+                            </td>
+                            <td>
+                              Mumbai
+                            </td>
+                            <td>
+                              Mumbai 2
+                            </td>
+                            <td>
+                              India
+                            </td>
+                            <td>
+                              West Bengal
+                            </td>
+                            <td>
+                              Mumbai
+                            </td>
+                            <td>
+                              600205
+                            </td>
+                            <td>
+                                <div class="status success">
+                                    Active
+                                </div>
+                            </td>
+                            <td>
+                              <div class="action ion-text-center">
+                                <ion-button matTooltip="Edit" matTooltipPosition="above" size="small" color="secondary" (click)="clickActionBtn('', 'edit')" [routerLink]="['/', 'add-security']">
+                                    <mat-icon>edit</mat-icon>
+                                </ion-button>
+                                <ion-button *ngIf="statusChange" matTooltip="Enable" matTooltipPosition="above" size="small" color="success" (click)="clickActionBtn(statusChange, 'status')">
+                                    <mat-icon >visibility</mat-icon>
+                                </ion-button>
+                                <ion-button *ngIf="!statusChange" matTooltip="Disable" matTooltipPosition="above" size="small" color="medium" (click)="clickActionBtn(statusChange, 'status')">
+                                  <mat-icon>visibility_off</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Delete" matTooltipPosition="above" size="small" color="danger" (click)="clickActionBtn('', 'delete')">
+                                    <mat-icon>delete</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="PDF" matTooltipPosition="above" size="small" color="tertiary" (click)="clickActionBtn('', 'pdf')">
+                                    <mat-icon>picture_as_pdf</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="EXCEL" matTooltipPosition="above" size="small" color="warning" (click)="clickActionBtn('', 'excel')">
+                                    <mat-icon>description</mat-icon>
+                                </ion-button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+              <div class="card-footer">
+                  <div class="action">
+                    <ion-button matTooltip="Refresh" matTooltipPosition="above" size="small" color="secondary" (click)="clickActionBtn('', 'refresh')">
+                        <mat-icon>refresh</mat-icon>
+                    </ion-button>
+                    <ion-button matTooltip="Enable" matTooltipPosition="above" size="small" color="success" (click)="clickActionBtn(statusChange, 'status')">
+                        <mat-icon>visibility</mat-icon>
+                    </ion-button>
+                    <ion-button matTooltip="Disable" matTooltipPosition="above" size="small" color="medium" (click)="clickActionBtn(statusChange, 'status')">
+                        <mat-icon>visibility_off</mat-icon>
+                    </ion-button>
+                    <ion-button matTooltip="Delete" matTooltipPosition="above" size="small" color="danger" (click)="clickActionBtn('', 'delete')">
+                        <mat-icon>delete</mat-icon>
+                    </ion-button>
+                    <ion-button matTooltip="PDF" matTooltipPosition="above" size="small" color="tertiary" (click)="clickActionBtn('', 'pdf')">
+                        <mat-icon>picture_as_pdf</mat-icon>
+                    </ion-button>
+                    <ion-button matTooltip="Excel" matTooltipPosition="above" size="small" color="warning" (click)="clickActionBtn('', 'excel')">
+                        <mat-icon>description</mat-icon>
+                    </ion-button>
+                  </div>
+                  <div>
+                    <ul class="pagination">
+                        <li class="circle-border" matTooltip="First" matTooltipPosition="above">
+                            <a>
+                              <!-- First -->
+                              <ion-icon name="play-skip-back"></ion-icon>
+                            </a>
+                        </li>
+                        <li class="circle-border" matTooltip="Previous" matTooltipPosition="above">
+                            <a>
+                              <!-- Previous -->
+                              <ion-icon name="caret-back"></ion-icon>
+                            </a>
+                        </li>
+                        <li> <span class="ran-separator pull-right margin-top-3"></span> </li>
+                        <li>
+                            Page <a>1</a> of 10
+                        </li>
+                        <li> <span class="ran-separator pull-right margin-top-3"></span> </li>
+                        <li class="circle-border" matTooltip="Next" matTooltipPosition="above">
+                            <a>
+                              <!-- Next -->
+                              <ion-icon name="caret-forward"></ion-icon>
+                            </a>
+                        </li>
+                        <li class="circle-border" matTooltip="Last" matTooltipPosition="above">
+                            <a>
+                              <!-- Last -->
+                              <ion-icon name="play-skip-forward"></ion-icon>
+                            </a>
+                        </li>
+                    </ul>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

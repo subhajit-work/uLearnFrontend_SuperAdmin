@@ -1,0 +1,105 @@
+1> Institute
+    i> Add/Edit Institute
+        Username
+        Password
+        Confirm Password
+        Institute Name
+        Institute Owner name 
+        Contact persion name
+        Contact Number
+        Email Address
+        Institutewebsite
+        Address 1 
+        Address 2
+        Country(Dropdown)
+        State(Dropdown)
+        City (Dropdown)
+        Pin Code
+        Institutelogo
+
+    ii> List Institute
+2> Subscription Package
+    i> Add/Edit Subscription
+        Package Name
+        Duration Year (Number)
+        Duration Month (Number)
+        Number of students (Number)
+        Mock tests (Number)
+        Cost (Number)
+
+    ii> List Subscription
+3> License
+    i> Add/Edit/View License
+        Institutes (Dropdown)
+        Package (Dropdown)
+        Start date (Date picker)
+        End date (Date picker)
+
+    ii> List License
+4> Notification
+    i> New Notification
+    ii> Approved Notifications
+    iii> Reject Notification
+
+5> Email Notification Content
+    i> Mail Template
+    ii> Add/Edit mail Template
+        Template Name 
+        Template Body (Text editor)
+
+    iii> Compose mail
+        From Mail
+        Choose Institute (Dropdown)
+        Choose mail type (Dropdown{Single/Multiple})
+        --> Single
+            Mobile Number
+        --> Multiple
+             Choose users (Multiple Dropdown{Course/Session/Batch})
+             Choose Course/Session/Batch (Multiple Dropdown)
+        To mail
+        CC / BCC
+        Mail Subject
+        Choose Template (Dropdown)
+        Template Body (Text editor)
+
+    iv> Sent mail
+    v> Received mail
+6> SMS Notification Content
+    i> SMS Template
+    ii> Add/Edit SMS Template
+        Template Name 
+        Template Description (Text editor)
+    iii> Compose SMS
+        Choose Institute (Dropdown)
+        Choose SMS type (Dropdown{Single/Multiple})
+        --> Single
+            Mobile Number
+        --> Multiple
+             Choose users (Multiple Dropdown{Course/Session/Batch})
+             Choose Course/Session/Batch (Multiple Dropdown)
+        Choose Template (Dropdown)
+        Template Details (Text editor)
+
+    iv> Sent SMS
+    v> Received SMS
+7> Payment 
+    i> Add/Edit/View Payment
+        Payment Type (Dropdown)
+        Payment Amount
+        Payment Details
+        Choose Institute (Dropdown)
+        Choose Package (Dropdown)
+        Payment Status (Dropdown)
+        
+    ii> List Payment
+8> Tracking
+    i> Institrute List
+    ii> User List
+9> Settings
+    i> List Banners
+    ii> Add/Edit Banners
+    iii> List Gallery
+    iv> Add/Edit Gallery
+    v> List Link
+    vi> Add/Edit Link
+    vii> Manage website

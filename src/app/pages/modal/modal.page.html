@@ -1,0 +1,572 @@
+<ion-header class="modal-header">
+  <ion-toolbar>
+    <div class="modal-inner">
+      <ion-title>{{heder_title}}</ion-title>
+      <!-- <ion-button (click)="closeModal()"> -->
+        <ion-icon class="closeBtn" slot="icon-only" (click)="closeModal()" name="close-circle-outline"></ion-icon>
+      <!-- </ion-button> -->
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="common-modal-body">
+    <div class="modal-wrapper">
+      <!-- changepassword start -->
+      <div class="changepassword" *ngIf="get_identifier == 'changepassword_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <form #changePasswordForm="ngForm" (ngSubmit)="onSubmitForm(changePasswordForm)" [mustMatch]="['password', 'confirm_password']" novalidate>
+                <ion-row>
+                  <input type="hidden" name="userName" [(ngModel)]="get_item" required>
+                  <!-- Enter old password -->
+                  <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                    <div class="form-item">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Enter old password</mat-label>
+                        <input matInput name="oldPass" [(ngModel)]="model.oldPass" type="text" required>
+                      </mat-form-field>
+                    </div>
+                  </ion-col>
+                  <!-- Enter new password -->
+                  <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                    <div class="form-item">
+                      <mat-form-field appearance="outline">
+                        <!-- <mat-icon matPrefix>lock</mat-icon> -->
+                        <mat-label>Enter new password</mat-label>
+                        <input matInput [type]="hide2 ? 'password' : 'text'" name="password" #password="ngModel" [(ngModel)]="model.password" required>
+                        <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+                          <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </div>
+                  </ion-col>
+                    <!-- Enter conform password -->
+                    <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                    <div class="form-item">
+                      <mat-form-field appearance="outline">
+                        <!-- <mat-icon matPrefix>lock</mat-icon> -->
+                        <mat-label>Enter conform password</mat-label>
+                        <input matInput [type]="hide3 ? 'password' : 'text'" name="newPass" #confirmPassword="ngModel" [(ngModel)]="model.newPass" required>
+                        <button mat-icon-button matSuffix (click)="hide3 = !hide3" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide3">
+                          <mat-icon>{{hide3 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-footer class="modal-footer">
+                    <div class="footer-inner">
+                      <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                      <button class="fill-btn btn-md" mat-stroked-button type="submit" [disabled]="!changePasswordForm.valid || formLoading">
+                        <ion-spinner *ngIf="formLoading" name="crescent"></ion-spinner>
+                        Save
+                      </button>
+                    </div>
+                </ion-footer>
+              </form>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- changepassword end --> 
+
+      <!-- *******Package start**** -->
+      <!-- Suspend package start -->
+      <div class="suspendPackage" *ngIf="get_identifier == 'suspend_package_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <form #suspendPackageForm="ngForm" (ngSubmit)="onSubmitForm(suspendPackageForm)" novalidate>
+                <ion-row>
+                  <!-- Date -->
+                  <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                    <div class="form-item">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Date</mat-label>
+                        <input (change)="changeDateFormat('plSusDate', model.plSusDate)" matInput placeholder="Date of Birth" type="date" name="plSusDate" [(ngModel)]="model.plSusDate" required>
+                      </mat-form-field>
+                    </div>
+                  </ion-col>
+                  <!-- Hidden -->
+                  <input type="hidden" name="plAdate" [(ngModel)]="model.plAdate" required>
+                  <!-- Remarks -->
+                  <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                    <div class="form-item">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Remarks</mat-label>
+                        <textarea rows="5" matInput name="plComment" [(ngModel)]="model.plComment"></textarea>
+                      </mat-form-field>
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-footer class="modal-footer">
+                  <div class="footer-inner">
+                    <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                    <button class="fill-btn btn-md" mat-stroked-button type="submit" [disabled]="!suspendPackageForm.valid || formLoading">
+                      <ion-spinner *ngIf="formLoading" name="crescent"></ion-spinner>
+                      Save
+                    </button>
+                  </div>
+                </ion-footer>
+              </form>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- Suspend package end -->
+      <!-- Restore package start -->
+      <div class="restorePackage" *ngIf="get_identifier == 'restore_package_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <ion-row>
+                <!-- Date -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Date</mat-label>
+                      <input matInput [matDatepicker]="dob">
+                      <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                      <mat-datepicker touchUi #dob></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+                <!-- Remarks -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Remarks</mat-label>
+                      <textarea rows="5" matInput></textarea>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-footer class="modal-footer">
+                <div class="footer-inner">
+                  <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                  <button class="fill-btn btn-md" mat-stroked-button type="submit" (click)="closeModal()">Save</button>
+                </div>
+              </ion-footer>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- Restore package end -->
+      <!-- end package start -->
+      <div class="endPackage" *ngIf="get_identifier == 'end_package_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <ion-row>
+                <!-- Date -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Date</mat-label>
+                      <input matInput [matDatepicker]="dob">
+                      <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                      <mat-datepicker touchUi #dob></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+                <!-- Remarks -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Remarks</mat-label>
+                      <textarea rows="5" matInput></textarea>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-footer class="modal-footer">
+                <div class="footer-inner">
+                  <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                  <button class="fill-btn btn-md" mat-stroked-button type="submit" (click)="closeModal()">Save</button>
+                </div>
+              </ion-footer>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- end package end -->
+      <!-- *******Package end**** -->
+
+      <!-- *******Licence start**** -->
+      <!-- Restore Licence start -->
+      <div class="restoreLicence" *ngIf="get_identifier == 'restore_licence_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <ion-row>
+                <!-- Date -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Date</mat-label>
+                      <input matInput [matDatepicker]="dob">
+                      <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                      <mat-datepicker touchUi #dob></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+                <!-- Remarks -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Remarks</mat-label>
+                      <textarea rows="5" matInput></textarea>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-footer class="modal-footer">
+                <div class="footer-inner">
+                  <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                  <button class="fill-btn btn-md" mat-stroked-button type="submit" (click)="closeModal()">Save</button>
+                </div>
+              </ion-footer>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- Restore Licence end -->
+      <!-- renew Licence start -->
+      <div class="renewLicence" *ngIf="get_identifier == 'renew_licence_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <ion-row>
+                <!-- Date -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Date</mat-label>
+                      <input matInput [matDatepicker]="dob">
+                      <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                      <mat-datepicker touchUi #dob></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+                <!-- End Date -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>End Date</mat-label>
+                      <input matInput [matDatepicker]="endDate">
+                      <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                      <mat-datepicker touchUi #endDate></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+                <!-- Validity -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Validity</mat-label>
+                      <mat-select [(value)]="selectedValidity">
+                        <mat-option [value]="option.value" *ngFor="let option of Validity">{{ option.viewValue }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+                <!-- How many's (Numbers) -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>How many's (Numbers)</mat-label>
+                      <input matInput placeholder="How many's (Numbers)" type="number" [(ngModel)]="model.numbers">
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+                <!-- Remarks -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Remarks</mat-label>
+                      <textarea rows="5" matInput></textarea>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-footer class="modal-footer">
+                <div class="footer-inner">
+                  <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                  <button class="fill-btn btn-md" mat-stroked-button type="submit" (click)="closeModal()">Save</button>
+                </div>
+              </ion-footer>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- renew Licence end -->
+      <!-- end Licence start -->
+      <div class="endLicence" *ngIf="get_identifier == 'end_licence_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <ion-row>
+                <!-- Date -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Date</mat-label>
+                      <input matInput [matDatepicker]="dob">
+                      <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                      <mat-datepicker touchUi #dob></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+                <!-- Remarks -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Remarks</mat-label>
+                      <textarea rows="5" matInput></textarea>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-footer class="modal-footer">
+                <div class="footer-inner">
+                  <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                  <button class="fill-btn btn-md" mat-stroked-button type="submit" (click)="closeModal()">Save</button>
+                </div>
+              </ion-footer>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- end Licence end -->  
+      <!-- suspend Licence start -->
+      <div class="suspendLicence" *ngIf="get_identifier == 'suspend_licence_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <form #suspendLicenseForm="ngForm" (ngSubmit)="onSubmitForm(suspendLicenseForm)" novalidate>
+                <ion-row>
+                  <!-- Date -->
+                  <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                    <div class="form-item">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Date</mat-label>
+                        <input (change)="changeDateFormat('licSusDate', model.licSusDate)" matInput placeholder="Date of Birth" type="date" name="licSusDate" [(ngModel)]="model.licSusDate" required>
+                      </mat-form-field>
+                    </div>
+                  </ion-col>
+                  <!-- Hidden -->
+                  <input type="hidden" name="llEdate" [(ngModel)]="model.llEdate" required>
+                  <!-- Remarks -->
+                  <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                    <div class="form-item">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Remarks</mat-label>
+                        <textarea rows="5" matInput name="llComment" [(ngModel)]="model.llComment"></textarea>
+                      </mat-form-field>
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-footer class="modal-footer">
+                  <div class="footer-inner">
+                    <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                    <button class="fill-btn btn-md" mat-stroked-button type="submit" [disabled]="!suspendLicenseForm.valid || formLoading">
+                      <ion-spinner *ngIf="formLoading" name="crescent"></ion-spinner>
+                      Save
+                    </button>
+                  </div>
+                </ion-footer>
+              </form>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- suspend Licence end --> 
+      <!-- extend Licence start -->
+      <div class="extendLicence" *ngIf="get_identifier == 'extend_licence_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <ion-row>
+                <!-- Date -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Date</mat-label>
+                      <input matInput [matDatepicker]="dob">
+                      <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                      <mat-datepicker touchUi #dob></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+                <!-- How many's (Numbers) -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>No. of Days</mat-label>
+                      <input matInput placeholder="No. of Days" type="number" [(ngModel)]="model.days">
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+                <!-- Remarks -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Remarks</mat-label>
+                      <textarea rows="5" matInput></textarea>
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-footer class="modal-footer">
+                <div class="footer-inner">
+                  <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                  <button class="fill-btn btn-md" mat-stroked-button type="submit" (click)="closeModal()">Save</button>
+                </div>
+              </ion-footer>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- extend Licence end -->  
+      <!-- *******Licencelist end**** -->
+      <!-- Template for start -->
+      <div class="templatefor" *ngIf="get_identifier == 'AddTemplate_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <ion-row>
+                <!-- Remarks -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Template For</mat-label>
+                      <input type="text" matInput />
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-footer class="modal-footer">
+                <div class="footer-inner">
+                  <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                  <button class="fill-btn btn-md" mat-stroked-button type="submit" (click)="closeModal()">Save</button>
+                </div>
+              </ion-footer>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- Template for end -->
+      <!-- set DEfault start -->
+      <div class="templatefor" *ngIf="get_identifier == 'AddDefault_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <ion-row>
+                <!-- Remarks -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Set Default</mat-label>
+                      <input type="text" matInput />
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-footer class="modal-footer">
+                <div class="footer-inner">
+                  <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                  <button class="fill-btn btn-md" mat-stroked-button type="submit" (click)="closeModal()">Save</button>
+                </div>
+              </ion-footer>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- set DEfault end -->
+      <!-- Add Sms Template start -->
+      <div class="templatefor" *ngIf="get_identifier == 'AddSmsTemplate_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <ion-row>
+                <!-- Remarks -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Template For</mat-label>
+                      <input type="text" matInput />
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-footer class="modal-footer">
+                <div class="footer-inner">
+                  <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                  <button class="fill-btn btn-md" mat-stroked-button type="submit" (click)="closeModal()">Save</button>
+                </div>
+              </ion-footer>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- Add Sms Template end -->
+
+      <!-- Add Header ID start -->
+      <div class="templatefor" *ngIf="get_identifier == 'choseHeader_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <ion-row>
+                <!-- Remarks -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Enter Header Id</mat-label>
+                      <input type="text" matInput />
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-footer class="modal-footer">
+                <div class="footer-inner">
+                  <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                  <button class="fill-btn btn-md" mat-stroked-button type="submit" (click)="closeModal()">Save</button>
+                </div>
+              </ion-footer>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- Add Header ID end -->
+       <!--set Default start -->
+      <div class="templatefor" *ngIf="get_identifier == 'add_Sms_default_modal'">
+        <div class="form-layout">
+          <div class="form-wrapper">
+            <ion-grid>
+              <ion-row>
+                <!-- Remarks -->
+                <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                  <div class="form-item">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Set Default</mat-label>
+                      <input type="text" matInput />
+                    </mat-form-field>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-footer class="modal-footer">
+                <div class="footer-inner">
+                  <button class="border-btn danger btn-md" style="margin-right: 10px;" (click)="closeModal()" mat-stroked-button>Cancel</button>
+                  <button class="fill-btn btn-md" mat-stroked-button type="submit" (click)="closeModal()">Save</button>
+                </div>
+              </ion-footer>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <!-- set Default end -->
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,182 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="form-layout">
+        <div class="card-outer">
+          <div class="card card-box">
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                    Compose Mail
+                  </div>
+                  <div class="card-header-action">
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="form-wrapper">
+                  <ion-grid>
+                    <ion-row>
+                      <!-- Choose mail type -->
+                      <ion-col size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Mail type</mat-label>
+                            <mat-select [(ngModel)]="model.selectedmail" name="mail">
+                              <mat-option *ngFor="let mail of mailType" [value]="mail.id">
+                                {{mail.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- From -->
+                      <ion-col size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>From</mat-label>
+                            <input matInput placeholder="From" type="text" [(ngModel)]="model.form">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Mail To -->
+                      <ion-col *ngIf="mailtype == 'Single'" size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>To</mat-label>
+                            <input matInput placeholder="To" type="text" [(ngModel)]="model.to">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Mail Copy -->
+                      <ion-col *ngIf="mailtype" size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Copy</mat-label>
+                            <input matInput placeholder="Copy" type="text" [(ngModel)]="model.copy">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      
+                      <!-- Mail Bcc -->
+                      <ion-col *ngIf="mailtype" size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Bcc</mat-label>
+                            <input matInput placeholder="Bcc" type="text" [(ngModel)]="model.bcc">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Institute -->
+                      <ion-col *ngIf="mailtype == 'Multiple'" size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Institute</mat-label>
+                            <mat-select [(ngModel)]="model.selectedinstitute" name="institute">
+                              <mat-option *ngFor="let institute of institutes" [value]="institute.id">
+                                {{institute.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Course -->
+                      <ion-col  size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Courses</mat-label>
+                            <mat-select [(ngModel)]="model.selectedCourses" name="Courses">
+                              <mat-option *ngFor="let Courses of courseItems" [value]="Courses.id">
+                                {{Courses.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Sessions -->
+                      <ion-col  size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Sessions</mat-label>
+                            <mat-select [(ngModel)]="model.selectedsession" name="session">
+                              <mat-option *ngFor="let Sessions of sessionItems" [value]="Sessions.id">
+                                {{Sessions.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Batchs -->
+                      <ion-col  size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Batchs</mat-label>
+                            <mat-select [(ngModel)]="model.selectedbatch" name="batch">
+                              <mat-option *ngFor="let batch of batchItems" [value]="batch.id">
+                                {{batch.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Mail Subject -->
+                      <ion-col size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Subject</mat-label>
+                            <input matInput placeholder="Subject" type="text" [(ngModel)]="model.subject">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Choose mail template -->
+                      <ion-col size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Choose Template</mat-label>
+                            <mat-select [(ngModel)]="model.selectedtemplate" name="temp">
+                              <mat-option *ngFor="let temp of template" [value]="temp.id">
+                                {{temp.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Mail Body -->
+                      <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                        <div class="form-item">
+                          <ion-label>Mail Body</ion-label>
+                          <div class="text-editor">
+                            <tinymce name="description" [(ngModel)]="mailBody"></tinymce>
+                          </div>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+              <div class="card-footer">
+                  <div>
+                      <button class="border-btn danger btn-md" style="margin-right: 10px;" mat-stroked-button>Cancel</button>
+                      <button class="fill-btn btn-md" (click)="presentToast()" mat-stroked-button [routerLink]="['/', 'sent-mail']">Save</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

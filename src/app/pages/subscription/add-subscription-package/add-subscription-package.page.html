@@ -1,0 +1,141 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="form-layout">
+        <div class="card-outer">
+          <div class="card card-box">
+            <form #addPackageForm="ngForm" (ngSubmit)="onSubmitForm(addPackageForm)">
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                      Package {{parms_action_name}}
+                  </div>
+                  <div class="card-header-action">
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="form-wrapper">
+                  <ion-grid>
+                    <ion-row>
+                      <!-- Package Name -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Package Name</mat-label>
+                            <input matInput placeholder="Package Name" required type="text" name="pkName" [(ngModel)]="model.pkName">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Package Full Name -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Package Full Name</mat-label>
+                            <input matInput placeholder="Package Full Name" required type="text" name="pkFname" [(ngModel)]="model.pkFname">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- No. of users -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                         <mat-form-field appearance="outline">
+                            <mat-label>No. of users</mat-label>
+                            <input matInput placeholder="No. of users" type="number" required name="pkNusers" [(ngModel)]="model.pkNusers">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Institute -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item ngsel">
+                          <ng-select [ngClass]="{ 'disabled' : instEdit || hideInstitute }" [items]="institutes" 
+                                   bindLabel="instName" 
+                                   name="instId"
+                                   placeholder="Select Institutes"
+                                   bindValue="instId" 
+                                   [(ngModel)]="model.instId"
+                                   (change)="ngsel(model.instId)"
+                                   required>
+                          </ng-select>
+                          <label>Institutes</label>
+                        </div>
+                      </ion-col>
+                      
+
+                      <!-- Validity -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item ngsel">
+                            <ng-select [items]="validity" 
+                                   bindLabel="name" 
+                                   name="pkValidityType"
+                                   placeholder="Select Validity"
+                                   bindValue="name" 
+                                   [(ngModel)]="model.pkValidityType"
+                                   (change)="ngsel(model.pkValidityType)"
+                                   required >
+                          </ng-select>
+                          <label>Validity</label>
+                        </div>
+                      </ion-col>
+
+                      <!-- Duration -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Duration</mat-label>
+                            <input matInput placeholder="Duration" required type="number" name="pkValidityNum" [(ngModel)]="model.pkValidityNum">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Start Date -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <!-- <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Start Date</mat-label>
+                            <input matInput [matDatepicker]="dob" name="durationyear" [(ngModel)]="model.durationyear">
+                            <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                            <mat-datepicker touchUi #dob></mat-datepicker>
+                          </mat-form-field> -->
+
+                          <mat-form-field appearance="outline">
+                            <mat-label>Start Date</mat-label>
+                            <input (change)="changeDateFormat('startDate', model.chkdurationyear)" onkeydown="return false" matInput placeholder="Start Date" type="date" name="chkdurationyear" [(ngModel)]="model.chkdurationyear" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Hidden -->
+                      <input type="hidden" name="pkCdate" [(ngModel)]="model.pkCdate" required>
+                      <!-- Remarks -->
+                      <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Remarks</mat-label>
+                            <textarea matInput name="pkComment" [(ngModel)]="model.pkComment" required></textarea>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div>
+                    <button class="border-btn danger btn-md" type="reset" [routerLink]="['/', 'subscription-package-list']" style="margin-right: 10px;" mat-stroked-button>Cancel</button>
+                    <button class="fill-btn btn-md" mat-stroked-button type="submit" [disabled]="!addPackageForm.valid || formLoading">
+                      <ion-spinner *ngIf="formLoading" name="crescent"></ion-spinner> 
+                      Save
+                    </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

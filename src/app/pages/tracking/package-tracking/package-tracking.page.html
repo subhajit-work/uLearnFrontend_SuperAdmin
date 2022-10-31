@@ -1,0 +1,264 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="table-listing">
+        <div class="card-outer">
+          <div class="card card-box">
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                      Institute Lists
+                  </div>
+                  <div class="card-header-action">
+                    
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="advance-search" *ngIf="searchStatus">
+                  <div class="advance-search-inner">
+                    <div class="form-layout">
+                      <div class="form-wrapper">
+                        <ion-grid>
+                          <ion-row>
+                            <!-- Institute -->
+                            <ion-col size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                              <div class="form-item">
+                                <ion-label>Institute</ion-label>
+                                <ng-select #select [items]="institute" [searchable]="true" [(ngModel)]="selectedinstitute" bindLabel="name" bindValue="name">
+                                  <ng-template ng-header-tmp>
+                                      <input style="width: 100%; line-height: 24px" type="text" />
+                                  </ng-template>
+                                </ng-select>
+                              </div>
+                            </ion-col>
+
+                            <!-- Package -->
+                            <ion-col size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                              <div class="form-item">
+                                <ion-label>Packages</ion-label>
+                                <ng-select #select [items]="package" [searchable]="false" [(ngModel)]="selectedPackage" bindLabel="name" bindValue="name">
+                                  <ng-template ng-header-tmp>
+                                      <input style="width: 100%; line-height: 24px" type="text" />
+                                  </ng-template>
+                                </ng-select>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      </div>
+                      <div class="form-footer">
+                        <button class="border-btn danger btn-md" style="margin-right: 10px;" mat-stroked-button (click)="openAdvanceSearch(searchStatus, 'search')">Cancel</button>
+                        <button class="fill-btn btn-md" mat-stroked-button [routerLink]="['/', 'package-tracking']">Search</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="table-header">
+                  <div class="records-wrapper">
+                    <ion-item class="record">
+                      <span>Records: </span>
+                      <mat-form-field>
+                        <mat-select value="10">
+                          <mat-option value="10">10</mat-option>
+                          <mat-option value="25">25</mat-option>
+                          <mat-option value="50">50</mat-option>
+                          <mat-option value="100">100</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </ion-item>
+                  </div>
+                  <div class="search-wrapper">
+                    <ion-searchbar showCancelButton="focus" debounce="500" placeholder="Search item ...."></ion-searchbar>
+                    <div class="action">
+                      <ion-button matTooltip="Advance search" matTooltipPosition="above" size="small" (click)="openAdvanceSearch(searchStatus, 'search')">
+                          <mat-icon>manage_search</mat-icon>
+                      </ion-button>
+                    </div>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="ion-text-start">
+                                    <div>
+                                        #
+                                    </div>
+                                </th>
+                                <th class="ion-text-start">
+                                  <div>
+                                      <ion-checkbox color="primary"></ion-checkbox>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                      Institutes Name
+                                      <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                      Package Name
+                                      <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Number of students
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Number of exams
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Activation date
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Exp. date
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div>
+                                    Status
+                                    <mat-icon>import_export</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div class="ion-justify-content-center">
+                                    Actions
+                                  </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr  [hidden]="!isListLoading" class="loading-table-data">
+                            <td colspan="100">
+                              Data is loading...
+                            </td>
+                          </tr>
+                          <tr  [hidden]="isListLoading" *ngFor="let item of skeleton; let i = index">
+                            <td>1</td>
+                            <td>
+                              <ion-checkbox color="primary"></ion-checkbox>
+                            </td>
+                            <td>
+                              <ion-item class="name-box">
+                                <ion-avatar slot="start">
+                                  <img src="assets/images/lalit.jpeg">
+                                </ion-avatar>
+                                <ion-label>
+                                  <h2 class="userName">Lalit Tutorial</h2>
+                                  <h3 class="userRole">Mumbai</h3>
+                                </ion-label>
+                              </ion-item>
+                            </td>
+                            <td>
+                              VIP package
+                            </td>
+                            <td>
+                              3000
+                            </td>
+                            <td>
+                              200
+                            </td>
+                            <td>
+                              18 Aug 2021
+                            </td>
+                            <td>
+                              18 Aug 2022
+                            </td>
+                            <td>
+                              <div class="status warning">
+                                  Pending
+                              </div>
+                            </td> 
+                            <td>
+                              <div class="action ion-text-center">
+                                <ion-button matTooltip="View" matTooltipPosition="above" size="small" color="tertiary" [routerLink]="['/', 'package-tracking-list']">
+                                  <mat-icon>view_in_ar</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Delete" matTooltipPosition="above" size="small" color="danger" (click)="clickActionBtn('', 'delete')">
+                                    <mat-icon>delete</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="PDF" matTooltipPosition="above" size="small" color="tertiary" (click)="clickActionBtn('', 'pdf')">
+                                    <mat-icon>picture_as_pdf</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="EXCEL" matTooltipPosition="above" size="small" color="warning" (click)="clickActionBtn('', 'excel')">
+                                    <mat-icon>description</mat-icon>
+                                </ion-button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="action">
+                  <ion-button matTooltip="Refresh" matTooltipPosition="above" size="small" color="secondary" (click)="clickActionBtn('', 'refresh')">
+                      <mat-icon>refresh</mat-icon>
+                  </ion-button>
+                  <ion-button matTooltip="Delete" matTooltipPosition="above" size="small" color="danger" (click)="clickActionBtn('', 'delete')">
+                      <mat-icon>delete</mat-icon>
+                  </ion-button>
+                  <ion-button matTooltip="PDF" matTooltipPosition="above" size="small" color="tertiary" (click)="clickActionBtn('', 'pdf')">
+                      <mat-icon>picture_as_pdf</mat-icon>
+                  </ion-button>
+                  <ion-button matTooltip="Excel" matTooltipPosition="above" size="small" color="warning" (click)="clickActionBtn('', 'excel')">
+                      <mat-icon>description</mat-icon>
+                  </ion-button>
+                </div>
+                <div>
+                  <ul class="pagination">
+                      <li class="circle-border" matTooltip="First" matTooltipPosition="above">
+                          <a>
+                            <!-- First -->
+                            <ion-icon name="play-skip-back"></ion-icon>
+                          </a>
+                      </li>
+                      <li class="circle-border" matTooltip="Previous" matTooltipPosition="above">
+                          <a>
+                            <!-- Previous -->
+                            <ion-icon name="caret-back"></ion-icon>
+                          </a>
+                      </li>
+                      <li> <span class="ran-separator pull-right margin-top-3"></span> </li>
+                      <li>
+                          Page <a>1</a> of 10
+                      </li>
+                      <li> <span class="ran-separator pull-right margin-top-3"></span> </li>
+                      <li class="circle-border" matTooltip="Next" matTooltipPosition="above">
+                          <a>
+                            <!-- Next -->
+                            <ion-icon name="caret-forward"></ion-icon>
+                          </a>
+                      </li>
+                      <li class="circle-border" matTooltip="Last" matTooltipPosition="above">
+                          <a>
+                            <!-- Last -->
+                            <ion-icon name="play-skip-forward"></ion-icon>
+                          </a>
+                      </li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

@@ -1,0 +1,32 @@
+ion-footer {
+    .footer-wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+        justify-content: center;
+        div {
+            margin: 0px 24px;
+            color: #40436a;
+            font-weight: 500;
+            img {
+                width: 200px;
+            }
+        }
+    }
+}
+
+// apurba style start
+@media screen and (max-width: 768px){
+    ion-footer {
+        .footer-wrapper {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            padding: 0;
+            div {
+                margin: 8px 24px;
+            }
+        }
+    }
+}

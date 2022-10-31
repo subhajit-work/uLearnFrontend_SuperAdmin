@@ -1,0 +1,180 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="card-outer">
+        <div class="card card-box">
+          <div class="card-header">
+            <div class="card-header-tittle">
+              Database Details
+            </div>
+            <div class="card-header-action">
+              <mat-icon>source</mat-icon>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="view-data">
+              <ion-grid>
+                <ion-row class="border">
+                  <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                    <div class="view-element">
+                      <span class="text-tittle">Host Name :</span>
+                      <span class="text-content">25</span>
+                    </div>
+                  </ion-col>
+                  <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                    <div class="view-element">
+                      <span class="text-tittle">Port Name :</span>
+                      <span class="text-content">100</span>
+                    </div>
+                  </ion-col>
+                  <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                    <div class="view-element">
+                      <span class="text-tittle">User Name :</span>
+                      <span class="text-content">3</span>
+                    </div>
+                  </ion-col>
+                  <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                    <div class="view-element">
+                      <span class="text-tittle">Password :</span>
+                      <span class="text-content">9</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+            <div class="status-spiner">
+              <div class="card-outer">
+                <div class="card card-box">
+                  <div class="card-header noBorder">
+                    <div class="card-header-tittle">
+                      <b>Chart Of Device Activity</b>
+                    </div>
+                    <div class="card-header-action">
+                      <!-- <mat-icon>badge</mat-icon> -->
+                    </div>
+                  </div>
+                  <div class="card-body ion-text-center">
+                    <div id="chart">
+                      <apx-chart
+                        [series]="chartOptions.series"
+                        [chart]="chartOptions.chart"
+                        [plotOptions]="chartOptions.plotOptions"
+                        [labels]="chartOptions.labels"
+                        [legend]="chartOptions.legend"
+                        [colors]="chartOptions.colors"
+                      ></apx-chart>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ion-col>
+          <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+            <div class="status-spiner">
+              <div class="card-outer">
+                <div class="card card-box">
+                  <div class="card-header noBorder">
+                    <div class="card-header-tittle">
+                      <b>Database Storage</b>
+                    </div>
+                    <div class="card-header-action">
+                      <!-- <mat-icon>badge</mat-icon> -->
+                    </div>
+                  </div>
+                  <div class="card-body ion-text-center">
+                    <div id="card">
+                      <div id="chart">
+                        <apx-chart
+                          [series]="chartOptions2.series"
+                          [chart]="chartOptions2.chart"
+                          [plotOptions]="chartOptions2.plotOptions"
+                          [labels]="chartOptions2.labels"
+                          [stroke]="chartOptions2.stroke"
+                          [fill]="chartOptions2.fill"
+                        ></apx-chart>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <div class="card-outer">
+        <div class="card card-box">
+          <div class="card-header">
+            <div class="card-header-tittle">
+              Server Details
+            </div>
+            <div class="card-header-action">
+              <mat-icon>http</mat-icon>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="view-data">
+              <ion-grid>
+                <ion-row class="border">
+                  <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                    <div class="view-element">
+                      <span class="text-tittle">Server Name :</span>
+                      <span class="text-content">5</span>
+                    </div>
+                  </ion-col>
+                  <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                    <div class="view-element">
+                      <span class="text-tittle">Server DNS :</span>
+                      <span class="text-content">5</span>
+                    </div>
+                  </ion-col>
+                  <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                    <div class="view-element">
+                      <span class="text-tittle">Server Host :</span>
+                      <span class="text-content">7</span>
+                    </div>
+                  </ion-col>
+                  <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                    <div class="view-element">
+                      <span class="text-tittle">Server Port :</span>
+                      <span class="text-content">21</span>
+                    </div>
+                  </ion-col>
+                  <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                    <div class="view-element">
+                      <span class="text-tittle">Server Username :</span>
+                      <span class="text-content">	00:07:03</span>
+                    </div>
+                  </ion-col>
+                  <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                    <div class="view-element">
+                      <span class="text-tittle">Server Password :</span>
+                      <span class="text-content">00:16</span>
+                    </div>
+                  </ion-col>
+                  <ion-col size-xs="12" size-sm="12" size-md="6"  size-lg="6">
+                    <div class="view-element">
+                      <span class="text-tittle">Loadbalancer Details :</span>
+                      <span class="text-content">	4</span>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

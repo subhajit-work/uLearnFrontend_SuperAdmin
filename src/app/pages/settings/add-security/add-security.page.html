@@ -1,0 +1,372 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="form-layout">
+        <div class="card-outer">
+          <div class="card card-box">
+            <form #addInstForm="ngForm" (ngSubmit)="onSubmitForm(addInstForm)" [mustMatch]="['amdPassword', 'amdCnfPassword']">
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                      Institute {{parms_action_name}}
+                  </div>
+                  <div class="card-header-action">
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="form-wrapper">
+                  <ion-grid>
+                    <p class="form-heading">Institute Details</p>
+                    <ion-row>
+                      <!-- Hidden -->
+                      <input type="hidden" name="amdPpic" [(ngModel)]="imageSrc">
+                      <input type="hidden" name="adrType" [(ngModel)]="adrType" required>
+                      <input type="hidden" name="amdEmail" [(ngModel)]="model.instEmail" required>
+                      <input *ngIf="parms_action_name == 'edit'" type="hidden" name="instId" [(ngModel)]="model.instId" required>
+                      <input *ngIf="parms_action_name == 'edit'" type="hidden" name="adrId" [(ngModel)]="model.adrId" required>
+                      <input *ngIf="parms_action_name == 'edit'" type="hidden" name="amdId" [(ngModel)]="model.amdId" required>
+                      <!-- Institute Name -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Institute Name</mat-label>
+                            <input matInput placeholder="Institute Name" name="instName" [(ngModel)]="model.instName" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Registration Date -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Registration Date</mat-label>
+                            <input (change)="changeDateFormat('registrationDate', model.chkRegDate)" matInput placeholder="Registration Date" type="date" name="chkRegDate" [(ngModel)]="model.chkRegDate" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Hidden -->
+                      <input type="hidden" name="isntRegDate" [(ngModel)]="model.isntRegDate" required>
+                      <!-- Establishment Date -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Establishment Date</mat-label>
+                            <input (change)="changeDateFormat('establishmentDate', model.chkEstDate)" matInput placeholder="Establishment Date" type="date" name="chkEstDate" [(ngModel)]="model.chkEstDate" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Hidden -->
+                      <input type="hidden" name="instEndDate" [(ngModel)]="model.instEndDate" required>
+                      <!-- Website/Domain Name -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Website/Domain Name </mat-label>
+                            <input matInput placeholder="Website/Domain Name" name="instWebsite" [(ngModel)]="model.instWebsite" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Email address -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Email Address </mat-label>
+                            <input matInput placeholder="Email Address" name="instEmail" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" email clearInput [(ngModel)]="model.instEmail" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Contact number -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Contact Number </mat-label>
+                            <input matInput placeholder="Contact Number" minlength="5" maxlength="20" name="instCnum" [(ngModel)]="model.instCnum" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Mobile number -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field  appearance="outline" class="customnumber">
+                            <mat-label>Mobile number</mat-label>
+                            <span matPrefix>
+                              <select class="countrycode" placeholder="Select State" name="instMnumCode" [(ngModel)]="model.instMnumCode" (change)="mobileNumberCode('instMobileNumber', 'numberCode', model.instMnumCode)" required>
+                                <option *ngFor="let item of countryCode" [value]="item.name">
+                                  {{item.name}}
+                                </option>
+                              </select>
+                            </span>
+                            <input type="text" matInput placeholder="Mobile Number" name="instMnumPh" minlength="5" maxlength="20" [(ngModel)]="model.instMnumPh" (change)="mobileNumberCode('instMobileNumber', 'number', model.instMnumPh)" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Hidden -->
+                      <input type="hidden" name="instMnum" [(ngModel)]="model.instMnum" required>
+
+                      <!-- GSTIN / UIN No -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>GSTIN / UIN No </mat-label>
+                            <input matInput placeholder="GSTIN / UIN No" name="instGstNum" minlength="15" maxlength="15" [(ngModel)]="model.instGstNum" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- PAN No -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>PAN No </mat-label>
+                            <input matInput placeholder="PAN No" name="instPanNum" minlength="10" maxlength="10" [(ngModel)]="model.instPanNum" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Institute Logo -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>Institute Logo</ion-label>
+                          <div class="custom-file">
+                            <input class="custom-file-input" id="singleFileUpload" type="file" name="imageUrl" accept="image/*" (change)="handleInputChange($event)">
+                            <label class="custom-file-label" for="singleFileUpload">Choose file</label>
+                            <img [src]="imageSrc" style="max-width:300px;max-height:300px"/>
+                          </div>
+                        </div>
+                      </ion-col>
+                      <!-- Hidden -->
+                      <input type="hidden" name="instLogo" [(ngModel)]="model.instLogo">
+                    </ion-row>
+                    <p class="form-heading">Owner Details</p>
+                    <ion-row>
+                      <!-- Owner Name -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>First Name </mat-label>
+                            <input matInput placeholder="Owner Name" name="amdFname" [(ngModel)]="model.amdFname" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Owner Name -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Last Name </mat-label>
+                            <input matInput placeholder="Owner Name" name="amdLname" [(ngModel)]="model.amdLname" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Date of Birth -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Date of Birth</mat-label>
+                            <input (change)="changeDateFormat('dateOfBirth', model.chkAmdDob)" matInput placeholder="Date of Birth" type="date" name="chkAmdDob" [(ngModel)]="model.chkAmdDob" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Hidden -->
+                      <input type="hidden" name="amdDob" [(ngModel)]="model.amdDob" required>
+                      <!-- Owner Mobile number -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field  appearance="outline" class="customnumber">
+                            <mat-label>Mobile number</mat-label>
+                            <span matPrefix>
+                              <select class="countrycode" placeholder="Select State" name="amdMnumCode" [(ngModel)]="model.amdMnumCode" (change)="mobileNumberCode('onrMobileNumber', 'numberCode', model.amdMnumCode)" required>
+                                <option *ngFor="let item of countryCode" [value]="item.name">
+                                  {{item.name}}
+                                </option>
+                              </select>
+                            </span>
+                            <input type="text" matInput placeholder="Mobile Number" name="amdMnumPh" minlength="5" maxlength="20" [(ngModel)]="model.amdMnumPh" (change)="mobileNumberCode('onrMobileNumber', 'number', model.amdMnumPh)" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Hidden -->
+                      <input type="hidden" name="amdMnum" [(ngModel)]="model.amdMnum" required>
+                      <!-- Address Line 1 -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Address Line 1 </mat-label>
+                            <input matInput placeholder="Address Line 1" name="adrLine1" [(ngModel)]="model.adrLine1" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Address Line 2 -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Address Line 2</mat-label>
+                            <input matInput placeholder="Address Line 2" name="adrLine2" [(ngModel)]="model.adrLine2">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Country -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item ngsel">
+                          <ng-select [items]="country" 
+                                   bindLabel="name" 
+                                   name="adrCountry"
+                                   placeholder="Select Country"
+                                   bindValue="id" 
+                                   [(ngModel)]="model.adrCountry"
+                                   (change)="ngsel(model.adrCountry)"
+                                   required>
+                          </ng-select>
+                          <label>Country </label>
+                        </div>
+                      </ion-col>
+                      <!-- State -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item ngsel">
+                          <ng-select [items]="state" 
+                                   bindLabel="name" 
+                                   name="adrState"
+                                   placeholder="Select State"
+                                   bindValue="id" 
+                                   [(ngModel)]="model.adrState"
+                                   (change)="ngsel(model.adrState)"
+                                   required>
+                          </ng-select>
+                          <label>State</label>
+                        </div>
+                      </ion-col>
+                      <!-- District -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item ngsel">
+                          <ng-select [items]="district" 
+                                   bindLabel="name" 
+                                   name="adrDistrict"
+                                   placeholder="Select District"
+                                   bindValue="id" 
+                                   [(ngModel)]="model.adrDistrict"
+                                   (change)="ngsel(model.adrDistrict)"
+                                   required>
+                          </ng-select>
+                          <label>District </label>
+                        </div>
+                      </ion-col>
+                      <!-- Taluka -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item ngsel">
+                          <!-- <mat-form-field appearance="outline">
+                            <mat-label>Taluka</mat-label>
+                            <mat-select name="adrTaluka" [(ngModel)]="model.adrTaluka">
+                              <mat-option *ngFor="let item of taluka" [value]="item.id">
+                                {{item.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field> -->
+                         
+                          <ng-select [items]="district" 
+                                   bindLabel="name" 
+                                   name="adrTaluka"
+                                   placeholder="Select Taluka"
+                                   bindValue="id" 
+                                   [(ngModel)]="model.adrTaluka"
+                                   (change)="ngsel(model.adrTaluka)"
+                                   required>
+                          </ng-select> 
+                          <label>Taluka </label>
+                        </div>
+                      </ion-col>
+                      <!-- City -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item ngsel">
+                          
+                          <ng-select [items]="city" 
+                                   bindLabel="name" 
+                                   name="adrCity"
+                                   placeholder="Select Taluka"
+                                   bindValue="id" 
+                                   [(ngModel)]="model.adrCity"
+                                   (change)="ngsel(model.adrCity)"
+                                   required>
+                          </ng-select>
+                          <label>City </label>
+                        </div>
+                      </ion-col>
+                      <!-- Pin Code -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4" >
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Pin Code </mat-label>
+                            <input matInput placeholder="Pin Code" name="adrPincode" minlength="6" maxlength="6" [(ngModel)]="model.adrPincode" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                    <p class="form-heading">Login Details</p>
+                    <ion-row>
+                      <!-- User Name -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>User Name </mat-label>
+                            <input matInput placeholder="User Name" (change)="passwordGenarate(model.amdUsername)" name="amdUsername" [(ngModel)]="model.amdUsername" required>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Password -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" ngModel
+                            name="amdPassword"
+                            [(ngModel)]="model.amdPassword"
+                            required
+                            placeholder="Password"
+                            minlenth="2"
+                            #passwordCtrl="ngModel"
+                            clearInput>
+                            <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </span>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Confirm Password -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Confirm Password</mat-label>
+                            <input matInput [type]="hide2 ? 'password' : 'text'" ngModel
+                            name="amdCnfPassword"
+                            [(ngModel)]="model.amdCnfPassword"
+                            required
+                            placeholder="Confirm Password"
+                            minlenth="2"
+                            #passwordCtrl="ngModel"
+                            clearInput>
+                            <span mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+                              <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </span>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div>
+                    <button class="border-btn danger btn-md" type="reset" [routerLink]="['/', 'security-list']" style="margin-right: 10px;" mat-stroked-button>Cancel</button>
+                    <button class="fill-btn btn-md" mat-stroked-button type="submit" [disabled]="!addInstForm.valid || formLoading">
+                      <ion-spinner *ngIf="formLoading" name="crescent"></ion-spinner> 
+                      Save
+                    </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

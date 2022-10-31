@@ -1,0 +1,78 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="form-layout">
+        <div class="card-outer">
+          <div class="card card-box">
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                      Social Link Add
+                  </div>
+                  <div class="card-header-action">
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="form-wrapper">
+                  <ion-grid>
+                    <ion-row>
+                      <!-- Institute -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>Institutes</ion-label>
+                          <ng-select #select 
+                            [items]="institute"
+                            placeholder="Please Select Institutes"
+                            [searchable]="true" 
+                            [(ngModel)]="selectedinstitute" 
+                            bindLabel="name" 
+                            bindValue="name">
+                          </ng-select>
+                        </div>
+                      </ion-col>
+                      <!-- Social Image -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>Social Image</ion-label>
+                          <div class="custom-file">
+                            <input class="custom-file-input" id="singleFileUpload" type="file">
+                            <label class="custom-file-label" for="singleFileUpload">Choose file</label>
+                          </div>
+                        </div>
+                      </ion-col>
+                      <!-- Social Tittle -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>Social Tittle</ion-label>
+                          <ion-input name="name" type="text"></ion-input>
+                        </div>
+                      </ion-col>
+
+                      <!-- Social Links -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>Social Links</ion-label>
+                          <ion-input name="name" type="text"></ion-input>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+              <div class="card-footer">
+                  <div>
+                      <button class="border-btn danger btn-md" style="margin-right: 10px;" mat-stroked-button>Cancel</button>
+                      <button class="fill-btn btn-md" (click)="presentToast()" mat-stroked-button [routerLink]="['/', 'security-list']">Save</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

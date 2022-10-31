@@ -1,0 +1,142 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="form-layout">
+        <div class="card-outer">
+          <div class="card card-box">
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                    Compose SMS
+                  </div>
+                  <div class="card-header-action">
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="form-wrapper">
+                  <ion-grid>
+                    <ion-row>
+                      <!-- Choose mail type -->
+                      <ion-col size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>SMS type</mat-label>
+                            <mat-select [(ngModel)]="model.selectedmailType" name="sms">
+                              <mat-option *ngFor="let sms of mailType" [value]="sms.id">
+                                {{sms.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field> 
+                        </div>
+                      </ion-col>
+
+                      <!-- Mobile Number -->
+                      <ion-col *ngIf="mailtype == 'Single'" size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Mobile Number</mat-label>
+                            <input matInput placeholder="Mobile" type="number" [(ngModel)]="model.mobilenumber">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Institute -->
+                      <ion-col *ngIf="mailtype == 'Multiple'" size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Institute</mat-label>
+                            <mat-select [(ngModel)]="model.selectedmailType" name="institute">
+                              <mat-option *ngFor="let institute of institutes" [value]="institute.id">
+                                {{institute.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field> 
+                        </div>
+                      </ion-col>
+
+                      <!-- Course -->
+                      <ion-col *ngIf="mailtype == 'Multiple'" size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Courses</mat-label>
+                            <mat-select [(ngModel)]="model.selectedcourse" name="course">
+                              <mat-option *ngFor="let course of courseItems" [value]="course.id">
+                                {{course.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Sessions -->
+                      <ion-col *ngIf="mailtype == 'Multiple'" size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Sessions</mat-label>
+                            <mat-select [(ngModel)]="model.selectedcourse" name="session">
+                              <mat-option *ngFor="let session of sessionItems" [value]="session.id">
+                                {{session.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Batchs -->
+                      <ion-col *ngIf="mailtype == 'Multiple'" size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Batchs</mat-label>
+                            <mat-select [(ngModel)]="model.selectedbatchs" name="batchs">
+                              <mat-option *ngFor="let batchs of batchItems" [value]="batchs.id">
+                                {{batchs.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- Choose mail template -->
+                      <ion-col size-xs="12" size-sm="6" size-md="3"  size-lg="3">
+                        <div class="form-item">
+                         <mat-form-field appearance="outline">
+                            <mat-label>Choose Template</mat-label>
+                            <mat-select [(ngModel)]="model.selectedtemplate" name="template">
+                              <mat-option *ngFor="let template of templates" [value]="template.id">
+                                {{template.name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+
+                      <!-- SMS Body -->
+                      <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                        <div class="form-item">
+                          <mat-label>SMS Body</mat-label>
+                          <div class="text-editor">
+                            <tinymce name="description" [(ngModel)]="mailBody" ></tinymce>
+                          </div>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+              <div class="card-footer">
+                  <div>
+                      <button class="border-btn danger btn-md" style="margin-right: 10px;" mat-stroked-button>Cancel</button>
+                      <button class="fill-btn btn-md" (click)="presentToast()" mat-stroked-button [routerLink]="['/', 'sent-sms']">Save</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

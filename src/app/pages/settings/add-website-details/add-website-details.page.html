@@ -1,0 +1,116 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="form-layout">
+        <div class="card-outer">
+          <div class="card card-box">
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                      Add Configuration
+                  </div>
+                  <div class="card-header-action">
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="form-wrapper">
+                  <ion-grid>
+                    <ion-row>
+                      <!-- DB Host Name -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>DB Host Name</ion-label>
+                          <ion-input name="name" type="text"></ion-input>
+                        </div>
+                      </ion-col>
+                      <!-- DB Port Name -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>DB Port Name</ion-label>
+                          <ion-input name="name" type="text"></ion-input>
+                        </div>
+                      </ion-col>
+                      <!-- DB Server Name -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>DB Server Name</ion-label>
+                          <ion-input name="name" type="text"></ion-input>
+                        </div>
+                      </ion-col>
+                      <!-- DB User Name -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>DB User Name</ion-label>
+                          <ion-input name="name" type="text"></ion-input>
+                        </div>
+                      </ion-col>
+                      <!-- DB Password-->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>DB Password</ion-label>
+                          <ion-input name="name" type="password"></ion-input>
+                        </div>
+                      </ion-col>
+                      <!-- Server DNS -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>Server DNS</ion-label>
+                          <ion-input name="name" type="email"></ion-input>
+                        </div>
+                      </ion-col>
+                      <!-- Server Host -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>Server Host</ion-label>
+                          <ion-input name="name" type="text"></ion-input>
+                        </div>
+                      </ion-col>
+                      <!-- Server Port -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>Server Port</ion-label>
+                          <ion-input name="name" type="text"></ion-input>
+                        </div>
+                      </ion-col>
+                      <!-- Server User Name -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>Server User Name</ion-label>
+                          <ion-input name="name" type="text"></ion-input>
+                        </div>
+                      </ion-col>
+                      <!-- Server Password -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>Server Password</ion-label>
+                          <ion-input name="name" type="text"></ion-input>
+                        </div>
+                      </ion-col>
+                      <!-- Load Balancer Details -->
+                      <ion-col size-xs="12" size-sm="6" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <ion-label>Load Balancer Details</ion-label>
+                          <ion-input name="name" type="text"></ion-input>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </div>
+              </div>
+              <div class="card-footer">
+                  <div>
+                      <button class="border-btn danger btn-md" style="margin-right: 10px;" mat-stroked-button>Cancel</button>
+                      <button class="fill-btn btn-md" (click)="presentToast()" mat-stroked-button [routerLink]="['/', 'security-list']">Save</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

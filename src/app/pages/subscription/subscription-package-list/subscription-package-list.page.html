@@ -1,0 +1,209 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="table-listing">
+        <div class="card-outer">
+          <div class="card card-box">
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                      Package List
+                  </div>
+                  <div class="card-header-action">
+                    <button class="border-btn success" [routerLink]="['/', 'add-subscription-package', 'add', 'id']" mat-stroked-button>
+                      <mat-icon>add_circle_outline</mat-icon>
+                      Add Package
+                    </button>
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="table-header">
+                  <div class="records-wrapper">
+                    <ion-item class="record">
+                      <span>Records: </span>
+                      <mat-form-field>
+                        <mat-select [(ngModel)]="displayRecord" name="record" (selectionChange)="displayRecordChange($event.value)">
+                          <mat-option *ngFor="let record of displayRecords" [value]="record.displayValue">
+                            <span *ngIf="record.displayValue > 0">{{record.displayValue}}</span>
+                            <span *ngIf="record.displayValue == 0">All</span>
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </ion-item>
+                  </div>
+                  <!-- <div class="table-segment">
+                    <ion-segment [(ngModel)]="tableValueType" (ionChange)="deletedOrNot($event)" color="secondary">
+                      <ion-segment-button value="0">
+                        <ion-label>
+                          Current
+                        </ion-label>
+                      </ion-segment-button>
+                      <ion-segment-button value="1">
+                        <ion-label>
+                          Deleted
+                        </ion-label>
+                      </ion-segment-button>
+                    </ion-segment>
+                  </div> -->
+                  <div class="search-wrapper">
+                    <ion-searchbar showCancelButton="focus" debounce="500" placeholder="Search item ...." [(ngModel)]="searchTerm" (ionChange)="searchList($event)"></ion-searchbar>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="ion-text-start">
+                                    <div>
+                                        #
+                                    </div>
+                                </th>
+                                <th class="ion-text-start">
+                                  <div>
+                                      <ion-checkbox color="primary"></ion-checkbox>
+                                  </div>
+                                </th>
+                                <th *ngFor="let th of tableHeaderData" (click)="isSortTableHeader(tableHeaderData, th)" class="ion-text-center">
+                                  <div>
+                                    {{th.display_name}}
+                                    <mat-icon *ngIf="th.sortingButtonName == ''">import_export</mat-icon>
+                                    <mat-icon *ngIf="th.sortingButtonName == 'ASC'">expand_less</mat-icon>
+                                    <mat-icon *ngIf="th.sortingButtonName == 'DESC'">expand_more</mat-icon>
+                                  </div>
+                                </th>
+                                <th class="ion-text-center">
+                                  <div class="ion-justify-content-center">
+                                    Actions
+                                  </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr  [hidden]="!isListLoading" class="loading-table-data">
+                            <td colspan="100">
+                              Data is loading...
+                            </td>
+                          </tr>
+                          <tr  [hidden]="isListLoading" *ngFor="let item of tableData?.data; let i = index">
+                            <td>
+                              {{i + 1}}
+                            </td>
+                            <td>
+                              <ion-checkbox color="primary"></ion-checkbox>
+                            </td>
+                            <td>
+                              {{item?.instituteEntity?.instName}}
+                            </td>
+                            <td>
+                               {{item?.pkCdate}}
+                            </td>
+                            <td>
+                               {{item?.pkName}}
+                            </td>
+                            <td>
+                               {{item?.pkNusers}}
+                            </td>
+                            <td>
+                               {{item?.pkValidityType}}
+                            </td>
+                            <td>
+                              <div *ngIf="item?.pkStatus == 'Active'" class="status success">
+                                {{item?.pkStatus}}
+                              </div>
+                              <div *ngIf="item?.pkStatus == 'Suspended'" class="status warning">
+                                {{item?.pkStatus}}
+                              </div>
+                            </td>
+                            <td>
+                              <div class="action ion-text-center">
+                                <ion-button matTooltip="Edit" matTooltipPosition="above" size="small" color="secondary" (click)="clickActionBtn('', 'edit')" [routerLink]="['/', 'add-subscription-package', 'edit', item.pkId]">
+                                  <mat-icon>edit</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Approve" matTooltipPosition="above" size="small" color="success" (click)="clickActionBtn('', 'approve')">
+                                    <mat-icon>done_all</mat-icon>
+                                </ion-button>
+                                <ion-button [ngClass]="{'readOnly': item?.pkStatus == 'Suspended'}"  matTooltip="Suspend" matTooltipPosition="above" size="small" color="tertiary" (click)="suspendPackageOpenModal('suspend_package_modal', item.pkId, '');">
+                                    <mat-icon>report_off</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Payment" matTooltipPosition="above" size="small" color="secondary">
+                                  <mat-icon>payments</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="Restore" matTooltipPosition="above" size="small" color="warning" (click)="RestorePackageOpenModal('restore_package_modal', get_user_dtls, '');">
+                                    <mat-icon>restore</mat-icon>
+                                </ion-button>
+                                <ion-button matTooltip="End" matTooltipPosition="above" size="small" color="danger" (click)="EndPackageOpenModal('end_package_modal', get_user_dtls, '');">
+                                  <mat-icon>remove_done</mat-icon>
+                                </ion-button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+              <div class="card-footer">
+                  <div class="action" [ngClass]="{disabled: tableData?.data.length == 0}">
+                    <ion-button matTooltip="Refresh" matTooltipPosition="above" size="small" color="secondary" (click)="onRefresh()">
+                        <mat-icon>refresh</mat-icon>
+                    </ion-button>
+                    <ion-button matTooltip="Payment" matTooltipPosition="above" size="small" color="secondary">
+                      <mat-icon>payments</mat-icon>
+                    </ion-button>
+                    <ion-button matTooltip="Approve" matTooltipPosition="above" size="small" color="success" (click)="clickActionBtn('', 'approve')">
+                        <mat-icon>done_all</mat-icon>
+                    </ion-button>
+                    <ion-button matTooltip="Suspend" matTooltipPosition="above" size="small" color="tertiary" (click)="suspendPackageOpenModal('suspend_package_modal', item.pkId, '');">
+                        <mat-icon>report_off</mat-icon>
+                    </ion-button>
+                    <ion-button matTooltip="Restore" matTooltipPosition="above" size="small" color="warning" (click)="RestorePackageOpenModal('restore_package_modal', get_user_dtls, '');">
+                        <mat-icon>restore</mat-icon>
+                    </ion-button>
+                    <ion-button matTooltip="End" matTooltipPosition="above" size="small" color="danger" (click)="EndPackageOpenModal('end_package_modal', get_user_dtls, '');">
+                      <mat-icon>remove_done</mat-icon>
+                    </ion-button>
+                  </div>
+                  <div>
+                    <ul class="pagination">
+                        <li (click)="setPage(0)" [ngClass]="{disabled:tableData?.currentPage === 0}" class="circle-border" matTooltip="First" matTooltipPosition="above">
+                            <a>
+                              <!-- First -->
+                              <ion-icon name="play-skip-back"></ion-icon>
+                            </a>
+                        </li>
+                        <li (click)="setPage(tableData.currentPage - 1)" [ngClass]="{disabled:tableData?.currentPage === 0}"  class="circle-border" matTooltip="Previous" matTooltipPosition="above">
+                            <a>
+                              <!-- Previous -->
+                              <ion-icon name="caret-back"></ion-icon>
+                            </a>
+                        </li>
+                        <li> <span class="ran-separator pull-right margin-top-3"></span> </li>
+                        <li>
+                          Page <a>{{ tableData?.currentPage + 1 }}</a> of {{ tableData?.totalPage + 1 }} 
+                        </li>
+                        <li> <span class="ran-separator pull-right margin-top-3"></span> </li>
+                        <li class="circle-border" matTooltip="Next" matTooltipPosition="above" (click)="setPage(tableData.currentPage + 1)" [ngClass]="{disabled:tableData?.currentPage === tableData?.totalPage}">
+                            <a>
+                              <!-- Next -->
+                              <ion-icon name="caret-forward"></ion-icon>
+                            </a>
+                        </li>
+                        <li (click)="setPage(tableData.totalPage)" [ngClass]="{disabled:tableData?.currentPage === tableData?.totalPage}" class="circle-border" matTooltip="Last" matTooltipPosition="above">
+                            <a>
+                              <!-- Last -->
+                              <ion-icon name="play-skip-forward"></ion-icon>
+                            </a>
+                        </li>
+                    </ul>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>

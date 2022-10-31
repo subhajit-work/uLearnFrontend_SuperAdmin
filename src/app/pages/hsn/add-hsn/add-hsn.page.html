@@ -1,0 +1,105 @@
+<!-- common header show -->
+<common-header></common-header>
+
+<ion-content>
+  <div class="page-body">
+    <div class="page-wrapper">
+      <div class="form-layout">
+        <div class="card-outer">
+          <div class="card card-box">
+              <div class="card-header">
+                  <div class="card-header-tittle">
+                    Add HSN / SAC Number
+                  </div>
+                  <div class="card-header-action">
+                  </div>
+              </div>
+              <div class="card-body">
+                <div class="form-wrapper">
+                  <ion-grid>
+                    <ion-row>
+                       <!-- HSN / SAC Number -->
+                       <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>HSN / SAC Number</mat-label>
+                            <input matInput placeholder="HSN / SAC Number" type="text" [(ngModel)]="model.hsnNumber">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                       <!-- Description -->
+                       <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Description</mat-label>
+                            <input matInput placeholder="Description" type="text" [(ngModel)]="model.description">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Template For -->
+                      <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>Select Service Type</mat-label>
+                            <mat-select [(value)]="selectedserviceType">
+                              <mat-option [value]="option.value" *ngFor="let option of serviceType">{{ option.viewValue }}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                     <!-- SGST Percentage -->
+                     <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                      <div class="form-item">
+                        <mat-form-field appearance="outline">
+                          <mat-label>SGST Percentage</mat-label>
+                          <input matInput placeholder="SGST Percentage" type="text" [(ngModel)]="model.sgst">
+                        </mat-form-field>
+                      </div>
+                    </ion-col>
+                       <!-- CGST Percentage -->
+                       <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>CGST Percentage</mat-label>
+                            <input matInput placeholder="CGST Percentage" type="text" [(ngModel)]="model.cgst">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                       <!-- IGST Percentage -->
+                       <ion-col size-xs="12" size-sm="4" size-md="4"  size-lg="4">
+                        <div class="form-item">
+                          <mat-form-field appearance="outline">
+                            <mat-label>IGST Percentage</mat-label>
+                            <input matInput placeholder="IGST Percentage" type="text" [(ngModel)]="model.igst">
+                          </mat-form-field>
+                        </div>
+                      </ion-col>
+                      <!-- Template Description -->
+                      <ion-col size-xs="12" size-sm="12" size-md="12"  size-lg="12">
+                        <div class="form-item">
+                          <ion-label>Template Body</ion-label>
+                          <div class="text-editor">
+                            <tinymce name="description" ></tinymce>
+                          </div>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                    <p class="informationTxt">You have <span>100</span> characters left.</p>
+                  </ion-grid>
+                </div>
+              </div>
+              <div class="card-footer">
+                  <div>
+                      <button class="border-btn danger btn-md" style="margin-right: 10px;" mat-stroked-button>Cancel</button>
+                      <button class="fill-btn btn-md" (click)="presentToast()" mat-stroked-button [routerLink]="['/', 'email-notification-list']">Save</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- common footer show -->
+<common-footer></common-footer>
